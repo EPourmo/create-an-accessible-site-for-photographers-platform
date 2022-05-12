@@ -6,7 +6,6 @@ document.body.appendChild(lightbox);
 // select all media
 function lightboxDisplay() {
   const mediaElement = document.querySelectorAll(".media-element");
-  console.log(mediaElement);
 
   for (let i = 0; i < mediaElement.length; i++) {
     mediaElement[i].addEventListener("click", () => {

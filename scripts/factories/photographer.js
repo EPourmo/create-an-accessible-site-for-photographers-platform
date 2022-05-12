@@ -57,11 +57,11 @@ function photographerFactory(data) {
     const dailyRate = document.createElement("p");
 
     information.setAttribute("class", "photographer-header-info");
-    bottomInfo.setAttribute("class", "bottom-info");
+    bottomInfo.setAttribute("class", "bottom-info main-focus last-focus");
     bottomInfo.setAttribute("tabindex", 2);
     paragraphContainerPhotographer.setAttribute(
       "class",
-      "photographer-paragraph-info"
+      "photographer-paragraph-info main-focus"
     );
 
     paragraphContainerPhotographer.setAttribute("tabindex", 1);
@@ -69,9 +69,11 @@ function photographerFactory(data) {
     img.setAttribute("src", picture);
     img.setAttribute("alt", " ");
     img.setAttribute("tabindex", 2);
+    img.setAttribute("class", "main-focus last-focus");
 
     h2.setAttribute("id", `photographer-name-${id}`);
     h2.setAttribute("tabindex", 1);
+    h2.setAttribute("class", "main-focus");
     h2.textContent = name;
 
     localisation.textContent = `${city}, ${country}`;
@@ -112,6 +114,7 @@ function mediaFactory(data) {
       cardVideo.setAttribute("class", "card-media");
       const vid = document.createElement("video");
       vid.setAttribute("controls", "");
+      vid.setAttribute("class", "main-focus last-focus");
 
       const source = document.createElement("source");
       source.setAttribute("src", videoMedia);
@@ -126,6 +129,7 @@ function mediaFactory(data) {
       const imgLink = document.createElement("a");
       const img = document.createElement("img");
       imgLink.setAttribute("href", "#");
+      imgLink.setAttribute("class", "main-focus last-focus");
       img.setAttribute("src", photoMedia);
       img.setAttribute("alt", `${title}, closeup view`);
       img.setAttribute("class", "photo-element media-element");

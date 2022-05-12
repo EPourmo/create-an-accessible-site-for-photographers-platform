@@ -22,7 +22,7 @@
   </head>
   <body>
     <header id="main-header">
-      <a href="/index.html" tabindex="1">
+      <a href="/index.html" tabindex="1" class="main-focus">
         <img
           src="assets/images/logo.png"
           class="logo"
@@ -34,7 +34,7 @@
       <div class="photograph-header">
         <button
           id="contact-btn-open"
-          class="contact_button"
+          class="contact_button main-focus last-focus"
           aria-label="Contactez moi"
           tabindex="2"
         >
@@ -77,21 +77,21 @@
     >
       <div class="modal">
         <header id="header">
-          <h2 id="contact-moi-header">
+          <h2 id="contact-moi-header" class="modal-focus">
             Contactez-moi <span id="photographer-name"></span>
           </h2>
           <img
             src="assets/icons/close.svg"
             id="close-btn"
             aria-label="fermer le formulaire"
-            tabindex="0"
+            class="modal-focus"
           />
         </header>
         <form name="contact" action="#" method="get" id="form">
           <div class="form-data">
-            <label for="first" id="prenom">Prénom</label>
+            <label for="first" id="prenom" class="modal-focus">Prénom</label>
             <input
-              class="text-control"
+              class="text-control modal-focus"
               type="text"
               id="first"
               name="first"
@@ -101,9 +101,9 @@
           </div>
 
           <div class="form-data">
-            <label for="last" id="nom">Nom</label>
+            <label for="last" id="nom" class="modal-focus">Nom</label>
             <input
-              class="text-control"
+              class="text-control modal-focus"
               type="text"
               id="last"
               name="last"
@@ -113,9 +113,9 @@
           </div>
 
           <div class="form-data">
-            <label for="email" id="e-mail">Email</label>
+            <label for="email" id="e-mail" class="modal-focus">Email</label>
             <input
-              class="text-control"
+              class="text-control modal-focus"
               type="email"
               id="email"
               name="email"
@@ -125,9 +125,11 @@
           </div>
 
           <div class="form-data">
-            <label for="message" id="msg">Votre message</label>
+            <label for="message" id="msg" class="modal-focus"
+              >Votre message</label
+            >
             <textarea
-              class="text-area"
+              class="text-area modal-focus"
               type="email"
               id="message"
               name="message"
@@ -137,7 +139,7 @@
           </div>
 
           <button
-            class="contact_button submit-btn"
+            class="contact_button submit-btn modal-focus"
             aria-label="Send"
             type="submit"
           >
