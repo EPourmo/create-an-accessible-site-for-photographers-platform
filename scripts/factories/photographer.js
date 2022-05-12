@@ -119,7 +119,7 @@ function mediaFactory(data) {
       const source = document.createElement("source");
       source.setAttribute("src", videoMedia);
       source.setAttribute("type", "video/mp4");
-      source.setAttribute("class", "photo-element media-element");
+      source.setAttribute("class", "video-element");
       vid.appendChild(source);
       cardVideo.appendChild(vid);
       card.appendChild(cardVideo);
@@ -132,7 +132,8 @@ function mediaFactory(data) {
       imgLink.setAttribute("class", "main-focus last-focus");
       img.setAttribute("src", photoMedia);
       img.setAttribute("alt", `${title}, closeup view`);
-      img.setAttribute("class", "photo-element media-element");
+      img.setAttribute("class", "photo-element");
+      // img.setAttribute("tabindex", 0);
       imgLink.appendChild(img);
       cardImg.appendChild(imgLink);
       card.appendChild(cardImg);

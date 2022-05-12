@@ -63,14 +63,16 @@ async function init() {
     (media) => media.photographerId == photographerId
   );
 
+  // const exampletrie = filteredData.sort((a, b) => a.likes - b.likes);
+
+  displayMedia(filteredData);
+
   // change l'action lors de l'envoi du formulaire
   // const formPhotographer = document.getElementById("form");
   // formPhotographer.setAttribute(
   //   "action",
   //   `photographer.html?id=${photographerId}`
   // );
-
-  displayMedia(filteredData);
 }
 
 init();
