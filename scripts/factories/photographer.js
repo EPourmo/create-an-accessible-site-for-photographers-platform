@@ -5,6 +5,7 @@ function photographerFactory(data) {
 
   function getUserCardDOM() {
     const article = document.createElement("article");
+    const paragraphContainer = document.createElement("div");
     const link = document.createElement("a");
     const img = document.createElement("img");
     const h2 = document.createElement("h2");
@@ -12,6 +13,8 @@ function photographerFactory(data) {
     const description = document.createElement("p");
     const dailyRate = document.createElement("p");
 
+    paragraphContainer.setAttribute("class", "paragraph-container");
+    paragraphContainer.setAttribute("tabindex", 0);
     img.setAttribute("src", picture);
     img.setAttribute("alt", " ");
 
@@ -34,10 +37,12 @@ function photographerFactory(data) {
     link.appendChild(img);
     link.appendChild(h2);
 
+    paragraphContainer.appendChild(localisation);
+    paragraphContainer.appendChild(description);
+    paragraphContainer.appendChild(dailyRate);
+
     article.appendChild(link);
-    article.appendChild(localisation);
-    article.appendChild(description);
-    article.appendChild(dailyRate);
+    article.appendChild(paragraphContainer);
     return article;
   }
 
@@ -46,17 +51,27 @@ function photographerFactory(data) {
     const bottomInfo = document.createElement("div");
     const img = document.createElement("img");
     const h2 = document.createElement("h2");
+    const paragraphContainerPhotographer = document.createElement("div");
     const localisation = document.createElement("p");
     const description = document.createElement("p");
     const dailyRate = document.createElement("p");
 
     information.setAttribute("class", "photographer-header-info");
     bottomInfo.setAttribute("class", "bottom-info");
+    bottomInfo.setAttribute("tabindex", 2);
+    paragraphContainerPhotographer.setAttribute(
+      "class",
+      "photographer-paragraph-info"
+    );
+
+    paragraphContainerPhotographer.setAttribute("tabindex", 1);
 
     img.setAttribute("src", picture);
     img.setAttribute("alt", " ");
+    img.setAttribute("tabindex", 2);
 
     h2.setAttribute("id", `photographer-name-${id}`);
+    h2.setAttribute("tabindex", 1);
     h2.textContent = name;
 
     localisation.textContent = `${city}, ${country}`;
@@ -68,10 +83,13 @@ function photographerFactory(data) {
     dailyRate.textContent = `${price}€/jour`;
     dailyRate.setAttribute("class", "daily-rate");
 
+    paragraphContainerPhotographer.appendChild(localisation);
+    paragraphContainerPhotographer.appendChild(description);
+
     information.appendChild(h2);
-    information.appendChild(localisation);
-    information.appendChild(description);
+    information.appendChild(paragraphContainerPhotographer);
     bottomInfo.appendChild(dailyRate);
+
     return { information, img, bottomInfo };
   }
 
