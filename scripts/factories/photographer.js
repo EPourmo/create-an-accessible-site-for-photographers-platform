@@ -115,7 +115,6 @@ function mediaFactory(data) {
       const vid = document.createElement("video");
       vid.setAttribute("controls", "");
       vid.setAttribute("class", "main-focus last-focus");
-
       const source = document.createElement("source");
       source.setAttribute("src", videoMedia);
       source.setAttribute("type", "video/mp4");
@@ -126,16 +125,16 @@ function mediaFactory(data) {
     } else {
       const cardImg = document.createElement("div");
       cardImg.setAttribute("class", "card-media test");
-      const imgLink = document.createElement("a");
+      // const imgLink = document.createElement("a");
       const img = document.createElement("img");
-      imgLink.setAttribute("href", "#");
-      imgLink.setAttribute("class", "main-focus last-focus");
+      // imgLink.setAttribute("href", "#");
+      // imgLink.setAttribute("class", "main-focus last-focus");
       img.setAttribute("src", photoMedia);
       img.setAttribute("alt", `${title}, closeup view`);
-      img.setAttribute("class", "photo-element");
-      // img.setAttribute("tabindex", 0);
-      imgLink.appendChild(img);
-      cardImg.appendChild(imgLink);
+      img.setAttribute("class", "photo-element main-focus last-focus");
+      img.setAttribute("tabindex", 0);
+      // imgLink.appendChild(img);
+      cardImg.appendChild(img);
       card.appendChild(cardImg);
     }
 
@@ -145,12 +144,14 @@ function mediaFactory(data) {
 
     card.setAttribute("class", "card");
     cardInfo.setAttribute("class", "card-info");
-    titleCard.setAttribute("class", "card-title");
+    titleCard.setAttribute("class", "card-title main-focus");
+    titleCard.setAttribute("tabindex", 0);
     titleCard.textContent = title;
     cardInfoLike.setAttribute("class", "card-like");
     likeNumb.textContent = likes;
-    likeIcon.setAttribute("class", "fa-solid fa-heart");
+    likeIcon.setAttribute("class", "fa-solid fa-heart main-focus");
     likeIcon.setAttribute("aria-label", "likes");
+    likeIcon.setAttribute("tabindex", 0);
 
     cardInfoLike.appendChild(likeNumb);
     cardInfoLike.appendChild(likeIcon);
@@ -162,5 +163,5 @@ function mediaFactory(data) {
     return card;
   }
 
-  return { id, getPortfolioCard };
+  return { getPortfolioCard };
 }

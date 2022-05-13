@@ -22,7 +22,7 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-function displayModal() {
+async function displayModal() {
   const modal = document.getElementById("contact_modal");
   const main = document.getElementById("main");
   const modalFocus = document.querySelectorAll(".modal-focus");
@@ -44,7 +44,7 @@ function displayModal() {
   closeBtnModal.setAttribute("tabindex", 2);
 }
 
-function closeModal() {
+async function closeModal() {
   const modal = document.getElementById("contact_modal");
   const main = document.getElementById("main");
   const modalFocus = document.querySelectorAll(".modal-focus");

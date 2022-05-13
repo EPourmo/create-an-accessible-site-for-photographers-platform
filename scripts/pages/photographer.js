@@ -40,8 +40,6 @@ async function displayMedia(media) {
     const portfolioCard = portfolioModel.getPortfolioCard();
     portfolioSection.appendChild(portfolioCard);
   });
-
-  lightboxDisplay(media);
 }
 
 async function init() {
@@ -55,17 +53,18 @@ async function init() {
   // Récupère les informations du header du photographe
   for (let i = 0; i < photographers.length; i++) {
     if (photographers[i].id == photographerId) {
-      displayPhotographerHeaderData(photographers[i]);
+      await displayPhotographerHeaderData(photographers[i]);
     }
   }
   // Récupère les medias du photographe
-  const filteredData = photoMedia.filter(
+  const filteredData = await photoMedia.filter(
     (media) => media.photographerId == photographerId
   );
 
   // const exampletrie = filteredData.sort((a, b) => a.likes - b.likes);
 
-  displayMedia(filteredData);
+  await displayMedia(filteredData);
+  await lightboxDisplay(filteredData);
 
   // change l'action lors de l'envoi du formulaire
   // const formPhotographer = document.getElementById("form");
