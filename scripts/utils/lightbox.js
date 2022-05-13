@@ -37,11 +37,16 @@ document.addEventListener("keydown", function (event) {
 });
 
 // select all media
-function lightboxDisplay() {
-  const mediaElement = document.querySelectorAll(".photo-element");
-  const newMedia = document.createElement("img");
+function lightboxDisplay(data) {
   let mediaArray = [];
   let currentIndex;
+  let title;
+  const mediaElement = document.querySelectorAll(".photo-element");
+  const newMedia = document.createElement("img");
+  lightboxContainer.appendChild(newMedia);
+  const lightboxTitle = document.createElement("p");
+  lightboxContainer.appendChild(lightboxTitle);
+  const mediaOnlyImg = data.filter((media) => media.image);
 
   // create an array of ordered img element
   for (let i = 0; i < mediaElement.length; i++) {
@@ -85,17 +90,22 @@ function lightboxDisplay() {
     lightbox.classList.add("active");
     newMedia.setAttribute("src", media.src);
     newMedia.setAttribute("class", "img-lb");
-    lightboxContainer.appendChild(newMedia);
     currentIndex = index;
+    title = mediaOnlyImg[currentIndex].title;
+    lightboxTitle.textContent = title;
   }
 
   function nextPhoto() {
     if (currentIndex == mediaArray.length - 1) {
       newMedia.setAttribute("src", mediaArray[0].src);
       currentIndex = 0;
+      title = mediaOnlyImg[currentIndex].title;
+      lightboxTitle.textContent = title;
     } else {
       newMedia.setAttribute("src", mediaArray[currentIndex + 1].src);
       currentIndex++;
+      title = data[currentIndex].title;
+      lightboxTitle.textContent = title;
     }
   }
 
@@ -103,9 +113,13 @@ function lightboxDisplay() {
     if (currentIndex == 0) {
       newMedia.setAttribute("src", mediaArray[mediaArray.length - 1].src);
       currentIndex = mediaArray.length - 1;
+      title = data[currentIndex].title;
+      lightboxTitle.textContent = title;
     } else {
       newMedia.setAttribute("src", mediaArray[currentIndex - 1].src);
       currentIndex--;
+      title = data[currentIndex].title;
+      lightboxTitle.textContent = title;
     }
   }
 }

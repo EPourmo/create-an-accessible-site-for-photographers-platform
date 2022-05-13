@@ -41,7 +41,7 @@ async function displayMedia(media) {
     portfolioSection.appendChild(portfolioCard);
   });
 
-  lightboxDisplay();
+  lightboxDisplay(media);
 }
 
 async function init() {
