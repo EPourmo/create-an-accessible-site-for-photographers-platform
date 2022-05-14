@@ -1,11 +1,3 @@
-// display modal
-document
-  .getElementById("contact-btn-open")
-  .addEventListener("click", displayModal);
-
-// close modal with close btn click
-document.getElementById("close-btn").addEventListener("click", closeModal);
-
 // close modal with close btn enter
 document
   .getElementById("close-btn")
@@ -49,7 +41,6 @@ async function closeModal() {
   const main = document.getElementById("main");
   const modalFocus = document.querySelectorAll(".modal-focus");
   const mainFocus = document.querySelectorAll(".main-focus");
-  const lastFocus = document.querySelectorAll(".last-focus");
 
   modal.setAttribute("aria-hidden", true);
   main.setAttribute("aria-hidden", false);
@@ -58,16 +49,17 @@ async function closeModal() {
     element.setAttribute("tabindex", 1);
   });
 
-  lastFocus.forEach((element) => {
-    element.setAttribute("tabindex", 2);
-  });
-
   modalFocus.forEach((element) => {
     element.setAttribute("tabindex", -1);
   });
 
   modal.style.display = "none";
 }
+
+// close modal with close btn click
+document
+  .getElementById("close-btn")
+  .addEventListener("click", () => closeModal());
 
 // prevent default form
 const form = document.getElementById("form");

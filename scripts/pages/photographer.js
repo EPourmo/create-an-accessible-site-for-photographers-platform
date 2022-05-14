@@ -19,14 +19,20 @@ async function getPhotographersFullData() {
 async function displayPhotographerHeaderData(photographer) {
   const photographerHeader = document.querySelector(".photograph-header");
   const photographerModel = photographerFactory(photographer);
-  const { information, img, bottomInfo } =
+  const { information, img, contactBtn, bottomInfo } =
     await photographerModel.getUserHeaderDOM();
   const formName = document.querySelector("#photographer-name");
 
   photographerHeader.appendChild(information);
+  photographerHeader.appendChild(contactBtn);
   photographerHeader.appendChild(img);
   photographerHeader.appendChild(bottomInfo);
   formName.textContent = photographer.name;
+
+  // display modal
+  document
+    .getElementById("contact-btn-open")
+    .addEventListener("click", () => displayModal());
 }
 
 async function displayMedia(media) {
@@ -65,13 +71,6 @@ async function init() {
 
   await displayMedia(filteredData);
   await lightboxDisplay(filteredData);
-
-  // change l'action lors de l'envoi du formulaire
-  // const formPhotographer = document.getElementById("form");
-  // formPhotographer.setAttribute(
-  //   "action",
-  //   `photographer.html?id=${photographerId}`
-  // );
 }
 
 init();

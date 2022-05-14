@@ -109,7 +109,6 @@ async function lightboxDisplay(data) {
     lightbox.setAttribute("aria-hidden", true);
 
     const mainFocus = document.querySelectorAll(".main-focus");
-    const lastMainFocus = document.querySelectorAll(".last-focus");
     const lbFocus = document.querySelectorAll(".lb-focus");
     lbFocus.forEach((element) => {
       element.setAttribute("tabindex", -1);
@@ -118,10 +117,6 @@ async function lightboxDisplay(data) {
     mainFocus.forEach((element) => {
       element.setAttribute("tabindex", 1);
     });
-
-    // lastMainFocus.forEach((element) => {
-    //   element.setAttribute("tabindex", 2);
-    // });
   }
 
   // use arrow for caroussel : click event
@@ -135,6 +130,19 @@ async function lightboxDisplay(data) {
   });
   document.addEventListener("keydown", function (event) {
     if (event.key === "ArrowLeft") {
+      nextPhoto();
+    }
+  });
+
+  // use focus and Enter on arrows for caroussel
+  rightArrow.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      previousPhoto();
+    }
+  });
+
+  leftArrow.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
       previousPhoto();
     }
   });

@@ -49,6 +49,7 @@ function photographerFactory(data) {
   function getUserHeaderDOM() {
     const information = document.createElement("div");
     const bottomInfo = document.createElement("div");
+    const contactBtn = document.createElement("button");
     const img = document.createElement("img");
     const h2 = document.createElement("h2");
     const paragraphContainerPhotographer = document.createElement("div");
@@ -57,8 +58,8 @@ function photographerFactory(data) {
     const dailyRate = document.createElement("p");
 
     information.setAttribute("class", "photographer-header-info");
-    bottomInfo.setAttribute("class", "bottom-info main-focus last-focus");
-    bottomInfo.setAttribute("tabindex", 2);
+    bottomInfo.setAttribute("class", "bottom-info main-focus");
+    bottomInfo.setAttribute("tabindex", 1);
     paragraphContainerPhotographer.setAttribute(
       "class",
       "photographer-paragraph-info main-focus"
@@ -66,10 +67,16 @@ function photographerFactory(data) {
 
     paragraphContainerPhotographer.setAttribute("tabindex", 1);
 
+    contactBtn.setAttribute("id", "contact-btn-open");
+    contactBtn.setAttribute("class", "contact_button main-focus");
+    contactBtn.setAttribute("aria-label", "Contactez moi");
+    contactBtn.setAttribute("tabindex", 1);
+    contactBtn.textContent = "Contactez moi";
+
     img.setAttribute("src", picture);
     img.setAttribute("alt", " ");
-    img.setAttribute("tabindex", 2);
-    img.setAttribute("class", "main-focus last-focus");
+    img.setAttribute("tabindex", 1);
+    img.setAttribute("class", "main-focus");
 
     h2.setAttribute("id", `photographer-name-${id}`);
     h2.setAttribute("tabindex", 1);
@@ -92,7 +99,7 @@ function photographerFactory(data) {
     information.appendChild(paragraphContainerPhotographer);
     bottomInfo.appendChild(dailyRate);
 
-    return { information, img, bottomInfo };
+    return { information, img, contactBtn, bottomInfo };
   }
 
   return { name, picture, getUserCardDOM, id, getUserHeaderDOM };
@@ -114,7 +121,7 @@ function mediaFactory(data) {
       cardVideo.setAttribute("class", "card-media");
       const vid = document.createElement("video");
       vid.setAttribute("controls", "");
-      vid.setAttribute("class", "main-focus last-focus");
+      vid.setAttribute("class", "main-focus");
       const source = document.createElement("source");
       source.setAttribute("src", videoMedia);
       source.setAttribute("type", "video/mp4");
@@ -125,15 +132,11 @@ function mediaFactory(data) {
     } else {
       const cardImg = document.createElement("div");
       cardImg.setAttribute("class", "card-media test");
-      // const imgLink = document.createElement("a");
       const img = document.createElement("img");
-      // imgLink.setAttribute("href", "#");
-      // imgLink.setAttribute("class", "main-focus last-focus");
       img.setAttribute("src", photoMedia);
       img.setAttribute("alt", `${title}, closeup view`);
-      img.setAttribute("class", "photo-element main-focus last-focus");
+      img.setAttribute("class", "photo-element main-focus");
       img.setAttribute("tabindex", 0);
-      // imgLink.appendChild(img);
       cardImg.appendChild(img);
       card.appendChild(cardImg);
     }
