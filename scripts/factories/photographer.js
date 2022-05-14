@@ -152,6 +152,8 @@ function mediaFactory(data) {
     titleCard.textContent = title;
     cardInfoLike.setAttribute("class", "card-like");
     likeNumb.textContent = likes;
+    likeNumb.setAttribute("tabindex", 0);
+    likeNumb.setAttribute("class", "like-number main-focus");
     likeIcon.setAttribute("class", "fa-solid fa-heart main-focus");
     likeIcon.setAttribute("aria-label", "likes");
     likeIcon.setAttribute("tabindex", 0);

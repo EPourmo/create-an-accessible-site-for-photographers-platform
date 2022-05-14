@@ -40,12 +40,65 @@ async function displayMedia(media) {
   const portfolioSection = document.createElement("section");
   portfolioSection.setAttribute("class", "portfolio");
   main.appendChild(portfolioSection);
-
+  // on génère l'ensemble des card photo
   media.forEach((pic) => {
     const portfolioModel = mediaFactory(pic);
     const portfolioCard = portfolioModel.getPortfolioCard();
     portfolioSection.appendChild(portfolioCard);
   });
+
+  // gestion des likes
+  let imgHeartArray = [];
+  let likeNumberArray = [];
+  const heartElement = document.getElementsByClassName("fa-heart");
+  const likeNumberElement = document.getElementsByClassName("like-number");
+
+  for (let i = 0; i < heartElement.length; i++) {
+    imgHeartArray.push(heartElement[i]);
+  }
+  for (let i = 0; i < likeNumberElement.length; i++) {
+    likeNumberArray.push(likeNumberElement[i]);
+  }
+
+  imgHeartArray.forEach((heart, index) => {
+    heart.addEventListener("click", () => {
+      addLike(index);
+      getTotalLikes();
+    });
+  });
+
+  imgHeartArray.forEach((heart, index) => {
+    heart.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        addLike(index);
+        getTotalLikes();
+      }
+    });
+  });
+
+  function addLike(index) {
+    if (likeNumberArray[index].innerHTML == media[index].likes) {
+      likeNumberArray[index].innerHTML = media[index].likes + 1;
+      likeNumberArray[index].classList.add("add-weight");
+    } else if (likeNumberArray[index].innerHTML == media[index].likes + 1) {
+      likeNumberArray[index].innerHTML = media[index].likes;
+      likeNumberArray[index].classList.remove("add-weight");
+    }
+  }
+
+  // affichage global des likes
+  function getTotalLikes() {
+    let likeTotalArray = [];
+    likeNumberArray.forEach((like) => {
+      likeTotalArray.push(like.innerHTML);
+    });
+
+    const totalLikes = likeTotalArray
+      .map((item) => parseInt(item, 10))
+      .reduce((previousValue, currentValue) => previousValue + currentValue);
+
+    console.log(totalLikes);
+  }
 }
 
 async function init() {

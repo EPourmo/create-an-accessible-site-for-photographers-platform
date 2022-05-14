@@ -150,6 +150,10 @@
   margin: 0;
 }
 
+.portfolio .card-info .card-like .add-weight {
+  font-weight: 700;
+}
+
 .portfolio .card-info .card-like i {
   font-size: 24px;
   color: #911c1c;
