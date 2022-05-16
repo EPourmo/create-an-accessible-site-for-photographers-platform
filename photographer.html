@@ -30,33 +30,17 @@
     </header>
     <main id="main" aria-hidden="false">
       <div class="photograph-header"></div>
-      <!-- <div class="sort-element">
-        <label for="choice">Trier par</label>
+      <div class="dropdown">
         <div class="select">
-          <input
-            class="selectopt"
-            name="select-choice"
-            type="radio"
-            id="popularity"
-            checked
-          />
-          <label for="popularity" class="option">Popularité</label>
-          <input
-            class="selectopt"
-            name="select-choice"
-            type="radio"
-            id="date"
-          />
-          <label for="date" class="option">Date</label>
-          <input
-            class="selectopt"
-            name="select-choice"
-            type="radio"
-            id="title"
-          />
-          <label for="title" class="option">Titre</label>
+          <span class="selected select-focus">Popularité</span>
+          <div class="caret"><i class="fa-solid fa-angle-down"></i></div>
         </div>
-      </div> -->
+        <ul class="menu">
+          <li class="active">Popularité</li>
+          <li class="select-focus">Date</li>
+          <li class="select-focus">Titre</li>
+        </ul>
+      </div>
     </main>
     <div
       id="contact_modal"

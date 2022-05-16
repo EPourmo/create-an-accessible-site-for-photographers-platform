@@ -53,7 +53,7 @@ async function displayMedia(media) {
   const heartElement = document.getElementsByClassName("heart");
   const likeNumberElement = document.getElementsByClassName("like-number");
 
-  const bottomlikeDiv = document.createElement("div.");
+  const bottomlikeDiv = document.createElement("div");
   const bottomLikeIcon = document.createElement("i");
   const bottomLikeParagraph = document.createElement("p");
   bottomlikeDiv.setAttribute("class", "likes-container");
@@ -107,7 +107,6 @@ async function displayMedia(media) {
     const totalLikes = likeTotalArray
       .map((item) => parseInt(item, 10))
       .reduce((previousValue, currentValue) => previousValue + currentValue);
-    console.log(totalLikes);
     bottomLikeParagraph.textContent = totalLikes;
   }
 }
@@ -127,14 +126,85 @@ async function init() {
     }
   }
   // Récupère les medias du photographe
-  const filteredData = await photoMedia.filter(
+  const photographerData = await photoMedia.filter(
     (media) => media.photographerId == photographerId
   );
 
-  // const exampletrie = filteredData.sort((a, b) => a.likes - b.likes);
+  const popularArraySorted = photographerData.sort((a, b) => b.likes - a.likes);
 
-  await displayMedia(filteredData);
-  await lightboxDisplay(filteredData);
+  displayMedia(popularArraySorted);
+  lightboxDisplay(popularArraySorted);
+
+  // trie des données suivant le click
+  const dropdown = document.querySelector(".dropdown");
+  const select = dropdown.querySelector(".select");
+  const caret = dropdown.querySelector(".caret");
+  const menu = dropdown.querySelector(".menu");
+  const options = dropdown.querySelectorAll(".menu li");
+  const selected = dropdown.querySelector(".selected");
+  let newArrayFiltered = photographerData;
+  select.setAttribute("tabindex", 1);
+
+  select.addEventListener("click", () => {
+    caret.classList.toggle("caret-rotate");
+    menu.classList.toggle("menu-open");
+  });
+
+  select.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      caret.classList.toggle("caret-rotate");
+      menu.classList.toggle("menu-open");
+    }
+  });
+
+  options.forEach((option) => {
+    option.addEventListener("click", () => {
+      selected.textContent = option.textContent;
+      caret.classList.remove("caret-rotate");
+      menu.classList.remove("menu-open");
+      options.forEach((option) => {
+        option.classList.remove("active");
+      });
+      option.classList.add("active");
+
+      if (selected.textContent === "Popularité") {
+        newArrayFiltered = photographerData.sort((a, b) => b.likes - a.likes);
+        removePreviousSection();
+        displayMedia(newArrayFiltered);
+        lightboxDisplay(newArrayFiltered);
+      } else if (selected.textContent === "Date") {
+        newArrayFiltered = photographerData.sort(
+          (a, b) => new Date(b.date) - new Date(a.date)
+        );
+        removePreviousSection();
+        displayMedia(newArrayFiltered);
+        lightboxDisplay(newArrayFiltered);
+      } else if (selected.textContent === "Titre") {
+        newArrayFiltered = photographerData.sort((a, b) =>
+          a.title.localeCompare(b.title)
+        );
+        removePreviousSection();
+        displayMedia(newArrayFiltered);
+        lightboxDisplay(newArrayFiltered);
+      } else {
+        newArrayFiltered = photographerData;
+        removePreviousSection();
+        displayMedia(newArrayFiltered);
+        lightboxDisplay(newArrayFiltered);
+      }
+    });
+  });
+
+  function removePreviousSection() {
+    const main = document.getElementById("main");
+    const portfolioSection = document.querySelector(".portfolio");
+    main.removeChild(portfolioSection);
+    const bottomInfo = document.querySelector(".bottom-info");
+    const totalLikesContainer = document.querySelector(".likes-container");
+    bottomInfo.removeChild(totalLikesContainer);
+  }
+
+  console.log(newArrayFiltered);
 }
 
 init();
