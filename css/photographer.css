@@ -100,6 +100,7 @@
 }
 
 .photograph-header .likes-container .total-likes {
+  margin: 0;
   margin-right: 5px;
 }
 

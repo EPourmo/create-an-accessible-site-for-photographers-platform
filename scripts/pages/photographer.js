@@ -57,7 +57,7 @@ async function displayMedia(media) {
   const bottomLikeIcon = document.createElement("i");
   const bottomLikeParagraph = document.createElement("p");
   bottomlikeDiv.setAttribute("class", "likes-container");
-  bottomLikeIcon.setAttribute("class", "fa-solid fa-heart main-focus");
+  bottomLikeIcon.setAttribute("class", "fa-solid fa-heart");
   bottomLikeParagraph.setAttribute("class", "total-likes");
   bottomlikeDiv.appendChild(bottomLikeParagraph);
   bottomlikeDiv.appendChild(bottomLikeIcon);
