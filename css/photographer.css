@@ -79,15 +79,28 @@
   background: #db8876;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  padding: 20px 30px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
-.photograph-header .daily-rate {
+.photograph-header .daily-rate,
+.photograph-header .likes-container {
   font-weight: 500;
   font-size: 24px;
   line-height: 31px;
+}
+
+.photograph-header .likes-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  order: -1;
+}
+
+.photograph-header .likes-container .total-likes {
+  margin-right: 5px;
 }
 
 /* -----portfolio----- */

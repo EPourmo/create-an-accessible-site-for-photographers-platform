@@ -50,8 +50,18 @@ async function displayMedia(media) {
   // gestion des likes
   let imgHeartArray = [];
   let likeNumberArray = [];
-  const heartElement = document.getElementsByClassName("fa-heart");
+  const heartElement = document.getElementsByClassName("heart");
   const likeNumberElement = document.getElementsByClassName("like-number");
+
+  const bottomlikeDiv = document.createElement("div.");
+  const bottomLikeIcon = document.createElement("i");
+  const bottomLikeParagraph = document.createElement("p");
+  bottomlikeDiv.setAttribute("class", "likes-container");
+  bottomLikeIcon.setAttribute("class", "fa-solid fa-heart main-focus");
+  bottomLikeParagraph.setAttribute("class", "total-likes");
+  bottomlikeDiv.appendChild(bottomLikeParagraph);
+  bottomlikeDiv.appendChild(bottomLikeIcon);
+  document.querySelector(".bottom-info").appendChild(bottomlikeDiv);
 
   for (let i = 0; i < heartElement.length; i++) {
     imgHeartArray.push(heartElement[i]);
@@ -60,13 +70,14 @@ async function displayMedia(media) {
     likeNumberArray.push(likeNumberElement[i]);
   }
 
+  getTotalLikes();
+
   imgHeartArray.forEach((heart, index) => {
     heart.addEventListener("click", () => {
       addLike(index);
       getTotalLikes();
     });
   });
-
   imgHeartArray.forEach((heart, index) => {
     heart.addEventListener("keydown", function (event) {
       if (event.key === "Enter") {
@@ -96,8 +107,8 @@ async function displayMedia(media) {
     const totalLikes = likeTotalArray
       .map((item) => parseInt(item, 10))
       .reduce((previousValue, currentValue) => previousValue + currentValue);
-
     console.log(totalLikes);
+    bottomLikeParagraph.textContent = totalLikes;
   }
 }
 
