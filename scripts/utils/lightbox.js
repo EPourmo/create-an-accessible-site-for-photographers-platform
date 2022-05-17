@@ -20,7 +20,9 @@ rightArrow.setAttribute(
   "class",
   "fa-solid fa-angle-right right-arrow lb-focus"
 );
+rightArrow.setAttribute("aria-label", "image suivante");
 leftArrow.setAttribute("class", "fa-solid fa-angle-left left-arrow lb-focus");
+leftArrow.setAttribute("aria-label", "image précédente");
 lightboxContainer.appendChild(leftArrow);
 lightboxContainer.appendChild(rightArrow);
 // create close btn
@@ -28,6 +30,7 @@ const closeBtnLb = document.createElement("img");
 closeBtnLb.setAttribute("src", "assets/icons/close.svg");
 closeBtnLb.setAttribute("class", "close-btn-lb");
 closeBtnLb.setAttribute("class", "close-btn-lb lb-focus");
+closeBtnLb.setAttribute("aria-label", "fermer la vue en gros plan");
 lightboxContainer.appendChild(closeBtnLb);
 
 // --------- END create elements--------
@@ -39,7 +42,6 @@ async function lightboxDisplay(data) {
   let title;
   let mediaArray = [];
   const mediaElement = document.querySelectorAll(".photo-element");
-
   const mediaOnlyImg = data.filter((media) => media.image);
 
   // create an array of ordered img element
@@ -81,10 +83,12 @@ async function lightboxDisplay(data) {
     lightbox.classList.add("active");
     newMedia.setAttribute("src", media.src);
     newMedia.setAttribute("class", "img-lb lb-focus");
+    newMedia.setAttribute("aria-labelledby", "lb-title");
     currentIndex = index;
     title = mediaOnlyImg[currentIndex].title;
     lightboxTitle.textContent = title;
     lightboxTitle.setAttribute("class", "lb-focus");
+    lightboxTitle.setAttribute("id", "lb-title");
     // change focus
     const main = document.getElementById("main");
     main.setAttribute("aria-hidden", true);
@@ -92,6 +96,8 @@ async function lightboxDisplay(data) {
 
     const mainFocus = document.querySelectorAll(".main-focus");
     const lbFocus = document.querySelectorAll(".lb-focus");
+    const trieElement = document.querySelector(".order-by");
+    const selectElement = document.querySelector(".select");
     lbFocus.forEach((element) => {
       element.setAttribute("tabindex", 0);
     });
@@ -99,12 +105,17 @@ async function lightboxDisplay(data) {
     mainFocus.forEach((element) => {
       element.setAttribute("tabindex", -1);
     });
+
+    trieElement.setAttribute("tabindex", -1);
+    selectElement.setAttribute("tabindex", -1);
   }
 
   function removeLightbox() {
     lightbox.classList.remove("active");
     // change focus
     const main = document.getElementById("main");
+    const trieElement = document.querySelector(".order-by");
+    const selectElement = document.querySelector(".select");
     main.setAttribute("aria-hidden", false);
     lightbox.setAttribute("aria-hidden", true);
 
@@ -115,8 +126,11 @@ async function lightboxDisplay(data) {
     });
 
     mainFocus.forEach((element) => {
-      element.setAttribute("tabindex", 1);
+      element.setAttribute("tabindex", 0);
     });
+
+    trieElement.setAttribute("tabindex", 0);
+    selectElement.setAttribute("tabindex", 0);
   }
 
   // use arrow for caroussel : click event

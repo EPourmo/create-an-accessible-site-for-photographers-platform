@@ -20,7 +20,7 @@
   </head>
   <body>
     <header id="main-header">
-      <a href="/index.html" tabindex="1" class="main-focus">
+      <a href="/index.html" tabindex="0" class="main-focus">
         <img
           src="assets/images/logo.png"
           class="logo"
@@ -30,16 +30,34 @@
     </header>
     <main id="main" aria-hidden="false">
       <div class="photograph-header"></div>
-      <div class="dropdown">
-        <div class="select">
-          <span class="selected select-focus">Popularité</span>
-          <div class="caret"><i class="fa-solid fa-angle-down"></i></div>
+      <div class="dropdown-container">
+        <p tabindex="0" class="order-by" id="order-by">Trier par</p>
+        <div class="dropdown">
+          <button
+            class="select"
+            tabindex="0"
+            role="button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+          >
+            <span class="selected">Popularité</span>
+            <div class="caret"><i class="fa-solid fa-angle-down"></i></div>
+          </button>
+          <ul
+            class="menu"
+            role="listbox"
+            id="menu"
+            tabindex="0"
+            aria-labelledby="order-by"
+            aria-activedescendant="popularity"
+          >
+            <li role="option" id="popularity" class="active" tabindex="0">
+              Popularité
+            </li>
+            <li role="option" id="date" tabindex="0">Date</li>
+            <li role="option" id="title-option" tabindex="0">Titre</li>
+          </ul>
         </div>
-        <ul class="menu">
-          <li class="active">Popularité</li>
-          <li class="select-focus">Date</li>
-          <li class="select-focus">Titre</li>
-        </ul>
       </div>
     </main>
     <div
@@ -113,7 +131,7 @@
 
           <button
             class="contact_button submit-btn modal-focus"
-            aria-label="Send"
+            aria-label="Envoyer"
             type="submit"
           >
             Envoyer

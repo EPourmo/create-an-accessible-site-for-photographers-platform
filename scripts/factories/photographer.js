@@ -59,27 +59,27 @@ function photographerFactory(data) {
 
     information.setAttribute("class", "photographer-header-info");
     bottomInfo.setAttribute("class", "bottom-info main-focus");
-    bottomInfo.setAttribute("tabindex", 1);
+    bottomInfo.setAttribute("tabindex", 0);
     paragraphContainerPhotographer.setAttribute(
       "class",
       "photographer-paragraph-info main-focus"
     );
 
-    paragraphContainerPhotographer.setAttribute("tabindex", 1);
+    paragraphContainerPhotographer.setAttribute("tabindex", 0);
 
     contactBtn.setAttribute("id", "contact-btn-open");
     contactBtn.setAttribute("class", "contact_button main-focus");
     contactBtn.setAttribute("aria-label", "Contactez moi");
-    contactBtn.setAttribute("tabindex", 1);
+    contactBtn.setAttribute("tabindex", 0);
     contactBtn.textContent = "Contactez moi";
 
     img.setAttribute("src", picture);
-    img.setAttribute("alt", " ");
-    img.setAttribute("tabindex", 1);
+    img.setAttribute("alt", name);
+    img.setAttribute("tabindex", 0);
     img.setAttribute("class", "main-focus");
 
     h2.setAttribute("id", `photographer-name-${id}`);
-    h2.setAttribute("tabindex", 1);
+    h2.setAttribute("tabindex", 0);
     h2.setAttribute("class", "main-focus");
     h2.textContent = name;
 
@@ -131,10 +131,10 @@ function mediaFactory(data) {
       card.appendChild(cardVideo);
     } else {
       const cardImg = document.createElement("div");
-      cardImg.setAttribute("class", "card-media test");
+      cardImg.setAttribute("class", "card-media");
       const img = document.createElement("img");
       img.setAttribute("src", photoMedia);
-      img.setAttribute("alt", `${title}, closeup view`);
+      img.setAttribute("alt", `${title}, vue en gros plan`);
       img.setAttribute("class", "photo-element main-focus");
       img.setAttribute("tabindex", 0);
       cardImg.appendChild(img);
@@ -154,8 +154,11 @@ function mediaFactory(data) {
     likeNumb.textContent = likes;
     likeNumb.setAttribute("tabindex", 0);
     likeNumb.setAttribute("class", "like-number main-focus");
+    likeNumb.setAttribute("aria-label", "nombre de likes");
     likeIcon.setAttribute("class", "fa-solid fa-heart heart main-focus");
     likeIcon.setAttribute("aria-label", "likes");
+    likeIcon.setAttribute("role", "button");
+    likeIcon.setAttribute("aria-pressed", "false");
     likeIcon.setAttribute("tabindex", 0);
 
     cardInfoLike.appendChild(likeNumb);

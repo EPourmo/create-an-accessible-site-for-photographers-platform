@@ -20,20 +20,24 @@ async function displayModal() {
   const modalFocus = document.querySelectorAll(".modal-focus");
   const closeBtnModal = document.getElementById("close-btn");
   const mainFocus = document.querySelectorAll(".main-focus");
+  const trieElement = document.querySelector(".order-by");
+  const selectElement = document.querySelector(".select");
 
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", false);
   main.setAttribute("aria-hidden", true);
 
   modalFocus.forEach((element) => {
-    element.setAttribute("tabindex", 1);
+    element.setAttribute("tabindex", 0);
   });
 
   mainFocus.forEach((element) => {
     element.setAttribute("tabindex", -1);
   });
+  trieElement.setAttribute("tabindex", -1);
+  selectElement.setAttribute("tabindex", -1);
 
-  closeBtnModal.setAttribute("tabindex", 2);
+  closeBtnModal.setAttribute("tabindex", 0);
 }
 
 async function closeModal() {
@@ -41,13 +45,17 @@ async function closeModal() {
   const main = document.getElementById("main");
   const modalFocus = document.querySelectorAll(".modal-focus");
   const mainFocus = document.querySelectorAll(".main-focus");
+  const trieElement = document.querySelector(".order-by");
+  const selectElement = document.querySelector(".select");
 
   modal.setAttribute("aria-hidden", true);
   main.setAttribute("aria-hidden", false);
 
   mainFocus.forEach((element) => {
-    element.setAttribute("tabindex", 1);
+    element.setAttribute("tabindex", 0);
   });
+  trieElement.setAttribute("tabindex", 0);
+  selectElement.setAttribute("tabindex", 0);
 
   modalFocus.forEach((element) => {
     element.setAttribute("tabindex", -1);
