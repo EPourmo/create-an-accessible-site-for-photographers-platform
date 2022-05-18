@@ -21,6 +21,7 @@
     <script defer src="scripts/factories/photographer.js"></script>
     <script defer src="/scripts/utils/contactForm.js"></script>
     <script defer src="/scripts/utils/lightbox.js"></script>
+    <script defer src="/scripts/utils/like.js"></script>
     <title>Fisheye - photographe</title>
   </head>
   <body>
@@ -36,7 +37,7 @@
     <main id="main" aria-hidden="false">
       <div class="photograph-header"></div>
       <div class="dropdown-container">
-        <p tabindex="0" class="order-by" id="order-by">Trier par</p>
+        <label tabindex="0" class="order-by" id="order-by">Trier par</label>
         <div class="dropdown">
           <button
             class="select"
@@ -48,10 +49,17 @@
             <span class="selected">Popularité</span>
             <div class="caret"><i class="fa-solid fa-angle-down"></i></div>
           </button>
-          <ul class="menu" role="listbox" id="menu" aria-labelledby="order-by">
-            <li role="option" class="active" tabindex="0">Popularité</li>
-            <li role="option" tabindex="0">Date</li>
-            <li role="option" tabindex="0">Titre</li>
+          <ul
+            class="menu"
+            role="listbox"
+            id="menu"
+            aria-labelledby="order-by"
+            tabindex="0"
+            aria-activedescendant="date"
+          >
+            <li role="option" class="active">Popularité</li>
+            <li role="option" id="date">Date</li>
+            <li role="option">Titre</li>
           </ul>
         </div>
       </div>
