@@ -77,8 +77,8 @@ async function init() {
     (media) => media.photographerId == photographerId
   );
 
+  // affichage par défaut des données par order de popularité
   const popularArraySorted = photographerData.sort((a, b) => b.likes - a.likes);
-
   displayMedia(popularArraySorted);
   lightboxDisplay(popularArraySorted);
 
@@ -90,15 +90,17 @@ async function init() {
   const options = dropdown.querySelectorAll(".menu li");
   const selected = dropdown.querySelector(".selected");
   // const mainFocus = document.querySelectorAll(".main-focus");
-  const orderByParagraph = document.querySelector(".order-by");
+  // const orderByParagraph = document.querySelector(".order-by");
   let newArrayFiltered = photographerData;
 
+  // lorsque que le btn filtre est selectionné : affichage du menu des filtres
   select.addEventListener("click", () => {
     caret.classList.toggle("caret-rotate");
     menu.classList.toggle("menu-open");
     select.setAttribute("aria-expanded", true);
   });
 
+  // définition des actions suivant le filtre choisi
   options.forEach((option) => {
     option.addEventListener("click", () => {
       selected.textContent = option.textContent;
@@ -110,7 +112,6 @@ async function init() {
       option.classList.add("active");
       select.setAttribute("aria-expanded", false);
 
-      orderByParagraph.setAttribute("tabindex", 0);
       if (selected.textContent === "Popularité") {
         newArrayFiltered = photographerData.sort((a, b) => b.likes - a.likes);
         removePreviousSection();
@@ -180,6 +181,7 @@ async function init() {
     });
   });
 
+  // suppression de l'ancienne section du portfolio
   function removePreviousSection() {
     const main = document.getElementById("main");
     const portfolioSection = document.querySelector(".portfolio");
