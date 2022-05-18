@@ -145,7 +145,7 @@ async function init() {
   const menu = dropdown.querySelector(".menu");
   const options = dropdown.querySelectorAll(".menu li");
   const selected = dropdown.querySelector(".selected");
-  const mainFocus = document.querySelectorAll(".main-focus");
+  // const mainFocus = document.querySelectorAll(".main-focus");
   const orderByParagraph = document.querySelector(".order-by");
   let newArrayFiltered = photographerData;
 
@@ -158,15 +158,15 @@ async function init() {
   options.forEach((option) => {
     option.addEventListener("click", () => {
       selected.textContent = option.textContent;
-      select.setAttribute("aria-expanded", false);
       caret.classList.remove("caret-rotate");
       menu.classList.remove("menu-open");
       options.forEach((option) => {
-        option.classList.remove("active");
+        option.removeAttribute("class");
       });
       option.classList.add("active");
       select.setAttribute("aria-expanded", false);
 
+      orderByParagraph.setAttribute("tabindex", 0);
       if (selected.textContent === "Popularité") {
         newArrayFiltered = photographerData.sort((a, b) => b.likes - a.likes);
         removePreviousSection();
@@ -199,24 +199,13 @@ async function init() {
     option.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         selected.textContent = option.textContent;
-        select.setAttribute("aria-expanded", false);
         caret.classList.remove("caret-rotate");
         menu.classList.remove("menu-open");
         options.forEach((option) => {
-          option.classList.remove("active");
+          option.removeAttribute("class");
         });
         option.classList.add("active");
         select.setAttribute("aria-expanded", false);
-
-        options.forEach((option) => {
-          option.setAttribute("tabindex", -1);
-        });
-
-        mainFocus.forEach((focus) => {
-          focus.setAttribute("tabindex", 0);
-        });
-
-        orderByParagraph.setAttribute("tabindex", 0);
 
         if (selected.textContent === "Popularité") {
           newArrayFiltered = photographerData.sort((a, b) => b.likes - a.likes);

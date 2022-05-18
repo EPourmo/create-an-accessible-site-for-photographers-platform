@@ -80,18 +80,15 @@ form.addEventListener("submit", (e) => {
   const email = document.getElementById("email");
   const message = document.getElementById("message");
 
-  if (first.value && last.value && email.value && message.value) {
-    console.log(
-      `Prénom: ${first.value}, Nom: ${first.value}, Email: ${email.value}, Message: ${message.value}`
-    );
-  }
-
   // submit button
-  // const sendBtn = document.querySelector(".submit-btn");
-  // sendBtn.addEventListener("click", () => {
-  //   first.value = "";
-  //   last.value = "";
-  //   email.value = "";
-  //   message.value = "";
-  // });
+  const sendBtn = document.querySelector(".submit-btn");
+  sendBtn.addEventListener("click", () => {
+    if (first.value && last.value && email.value && message.value) {
+      console.log(
+        `Prénom: ${first.value}, Nom: ${first.value}, Email: ${email.value}, Message: ${message.value}`
+      );
+    }
+    const inputData = document.querySelectorAll(".input-data");
+    inputData.forEach((input) => (input.value = ""));
+  });
 });

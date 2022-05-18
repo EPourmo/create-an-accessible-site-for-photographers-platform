@@ -43,19 +43,10 @@
             <span class="selected">Popularité</span>
             <div class="caret"><i class="fa-solid fa-angle-down"></i></div>
           </button>
-          <ul
-            class="menu"
-            role="listbox"
-            id="menu"
-            tabindex="0"
-            aria-labelledby="order-by"
-            aria-activedescendant="popularity"
-          >
-            <li role="option" id="popularity" class="active" tabindex="0">
-              Popularité
-            </li>
-            <li role="option" id="date" tabindex="0">Date</li>
-            <li role="option" id="title-option" tabindex="0">Titre</li>
+          <ul class="menu" role="listbox" id="menu" aria-labelledby="order-by">
+            <li role="option" class="active" tabindex="0">Popularité</li>
+            <li role="option" tabindex="0">Date</li>
+            <li role="option" tabindex="0">Titre</li>
           </ul>
         </div>
       </div>
@@ -82,7 +73,7 @@
           <div class="form-data">
             <label for="first" id="prenom" class="modal-focus">Prénom</label>
             <input
-              class="text-control modal-focus"
+              class="text-control input-data modal-focus"
               type="text"
               id="first"
               name="first"
@@ -94,7 +85,7 @@
           <div class="form-data">
             <label for="last" id="nom" class="modal-focus">Nom</label>
             <input
-              class="text-control modal-focus"
+              class="text-control input-data modal-focus"
               type="text"
               id="last"
               name="last"
@@ -106,7 +97,7 @@
           <div class="form-data">
             <label for="email" id="e-mail" class="modal-focus">Email</label>
             <input
-              class="text-control modal-focus"
+              class="text-control input-data modal-focus"
               type="email"
               id="email"
               name="email"
@@ -120,7 +111,7 @@
               >Votre message</label
             >
             <textarea
-              class="text-area modal-focus"
+              class="text-area input-data modal-focus"
               type="email"
               id="message"
               name="message"
