@@ -44,7 +44,9 @@
             aria-haspopup="listbox"
             aria-expanded="false"
           >
-            <span class="selected">Popularité</span>
+            <span class="selected" aria-label="trie par popularité"
+              >Popularité</span
+            >
             <div class="caret"><i class="fa-solid fa-angle-down"></i></div>
           </button>
           <ul
@@ -54,9 +56,31 @@
             aria-labelledby="order-by"
             aria-activedescendant="date"
           >
-            <li tabindex="0" role="option" class="active">Popularité</li>
-            <li tabindex="0" role="option" id="date">Date</li>
-            <li tabindex="0" role="option">Titre</li>
+            <li
+              tabindex="0"
+              role="option"
+              id="popularity"
+              class="active"
+              aria-labelledby="order-by popularity"
+            >
+              Popularité
+            </li>
+            <li
+              tabindex="0"
+              role="option"
+              id="date"
+              aria-labelledby="order-by date"
+            >
+              Date
+            </li>
+            <li
+              tabindex="0"
+              role="option"
+              id="title"
+              aria-labelledby="order-by title"
+            >
+              Titre
+            </li>
           </ul>
         </div>
       </div>

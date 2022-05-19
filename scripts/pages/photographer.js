@@ -90,8 +90,8 @@ async function init() {
   const menu = dropdown.querySelector(".menu");
   const options = dropdown.querySelectorAll(".menu li");
   const selected = dropdown.querySelector(".selected");
-  // const mainFocus = document.querySelectorAll(".main-focus");
-  // const orderByParagraph = document.querySelector(".order-by");
+  const mainFocus = document.querySelectorAll(".main-focus");
+  const orderByParagraph = document.querySelector(".order-by");
   let newArrayFiltered = photographerData;
 
   // lorsque que le btn filtre est selectionné : affichage du menu des filtres
@@ -99,12 +99,35 @@ async function init() {
     caret.classList.toggle("caret-rotate");
     menu.classList.toggle("menu-open");
     select.setAttribute("aria-expanded", true);
+
+    const sectionPortfolio = document.querySelector(".portfolio");
+    const photographerHeader = document.querySelector(".photograph-header");
+
+    sectionPortfolio.addEventListener(
+      "focus",
+      () => {
+        caret.classList.remove("caret-rotate");
+        menu.classList.remove("menu-open");
+        select.setAttribute("aria-expanded", false);
+      },
+      true
+    );
+
+    photographerHeader.addEventListener(
+      "focus",
+      () => {
+        caret.classList.remove("caret-rotate");
+        menu.classList.remove("menu-open");
+        select.setAttribute("aria-expanded", false);
+      },
+      true
+    );
   });
 
   // définition des actions suivant le filtre choisi
   options.forEach((option) => {
     option.addEventListener("click", () => {
-      selected.textContent = option.textContent;
+      selected.innerText = option.innerText;
       caret.classList.remove("caret-rotate");
       menu.classList.remove("menu-open");
       options.forEach((option) => {
@@ -114,19 +137,23 @@ async function init() {
       select.setAttribute("aria-expanded", false);
       select.focus();
 
-      if (selected.textContent === "Popularité") {
-        newArrayFiltered = photographerData.sort((a, b) => b.likes - a.likes);
+      console.log(selected.innerText);
+
+      if (selected.innerText === "Popularité") {
+        newArrayFiltereinnerTextd = photographerData.sort(
+          (a, b) => b.likes - a.likes
+        );
         removePreviousSection();
         displayMedia(newArrayFiltered);
         lightboxDisplay(newArrayFiltered);
-      } else if (selected.textContent === "Date") {
+      } else if (selected.innerText === "Date") {
         newArrayFiltered = photographerData.sort(
           (a, b) => new Date(b.date) - new Date(a.date)
         );
         removePreviousSection();
         displayMedia(newArrayFiltered);
         lightboxDisplay(newArrayFiltered);
-      } else if (selected.textContent === "Titre") {
+      } else if (selected.innerText === "Titre") {
         newArrayFiltered = photographerData.sort((a, b) =>
           a.title.localeCompare(b.title)
         );
@@ -146,26 +173,26 @@ async function init() {
     option.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         select.focus();
-        selected.textContent = option.textContent;
+        selected.innerText = option.innerText;
         options.forEach((option) => {
           option.removeAttribute("class");
         });
         option.classList.add("active");
         select.setAttribute("aria-expanded", false);
 
-        if (selected.textContent === "Popularité") {
+        if (selected.innerText === "Popularité") {
           newArrayFiltered = photographerData.sort((a, b) => b.likes - a.likes);
           removePreviousSection();
           displayMedia(newArrayFiltered);
           lightboxDisplay(newArrayFiltered);
-        } else if (selected.textContent === "Date") {
+        } else if (selected.innerText === "Date") {
           newArrayFiltered = photographerData.sort(
             (a, b) => new Date(b.date) - new Date(a.date)
           );
           removePreviousSection();
           displayMedia(newArrayFiltered);
           lightboxDisplay(newArrayFiltered);
-        } else if (selected.textContent === "Titre") {
+        } else if (selected.innerText === "Titre") {
           newArrayFiltered = photographerData.sort((a, b) =>
             a.title.localeCompare(b.title)
           );
