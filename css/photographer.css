@@ -380,6 +380,7 @@ form .form-data {
 
 .caret {
   transition: 0.3s;
+  font-style: normal;
 }
 
 .caret-rotate {
