@@ -18,7 +18,7 @@ function photographerFactory(data) {
     img.setAttribute("src", picture);
     img.setAttribute("alt", " ");
 
-    link.setAttribute("href", "/photographer.html");
+    link.setAttribute("href", "./photographer.html");
     link.setAttribute("id", `photographer-id-${id}`);
     link.setAttribute("aria-labelledby", `photographer-name-${id}`);
 
