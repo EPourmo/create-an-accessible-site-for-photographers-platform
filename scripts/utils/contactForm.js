@@ -14,6 +14,11 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
+// close modal with close btn click
+document.getElementById("close-btn").addEventListener("click", () => {
+  closeModal();
+});
+
 // eslint-disable-next-line no-unused-vars
 async function displayModal() {
   const modal = document.getElementById("contact_modal");
@@ -23,6 +28,7 @@ async function displayModal() {
   const mainFocus = document.querySelectorAll(".main-focus");
   const trieElement = document.querySelector(".order-by");
   const selectElement = document.querySelector(".select");
+  const modalHeaderName = document.getElementById("contact-moi-header");
 
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", false);
@@ -39,6 +45,8 @@ async function displayModal() {
   selectElement.setAttribute("tabindex", -1);
 
   closeBtnModal.setAttribute("tabindex", 0);
+
+  modalHeaderName.focus();
 }
 
 async function closeModal() {
@@ -65,11 +73,6 @@ async function closeModal() {
   modal.style.display = "none";
 }
 
-// close modal with close btn click
-document
-  .getElementById("close-btn")
-  .addEventListener("click", () => closeModal());
-
 // prevent default form
 const form = document.getElementById("form");
 
@@ -81,15 +84,13 @@ form.addEventListener("submit", (e) => {
   const email = document.getElementById("email");
   const message = document.getElementById("message");
 
-  // submit button
-  const sendBtn = document.querySelector(".submit-btn");
-  sendBtn.addEventListener("click", () => {
-    if (first.value && last.value && email.value && message.value) {
-      console.log(
-        `Prénom: ${first.value}, Nom: ${first.value}, Email: ${email.value}, Message: ${message.value}`
-      );
-    }
-    const inputData = document.querySelectorAll(".input-data");
-    inputData.forEach((input) => (input.value = ""));
-  });
+  if (first.value && last.value && email.value && message.value) {
+    console.log(
+      `Prénom: ${first.value}, Nom: ${first.value}, Email: ${email.value}, Message: ${message.value}`
+    );
+  }
+
+  closeModal();
+  const inputData = document.querySelectorAll(".input-data");
+  inputData.forEach((input) => (input.value = ""));
 });

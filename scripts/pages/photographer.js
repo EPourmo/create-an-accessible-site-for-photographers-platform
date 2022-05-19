@@ -112,6 +112,7 @@ async function init() {
       });
       option.classList.add("active");
       select.setAttribute("aria-expanded", false);
+      select.focus();
 
       if (selected.textContent === "Popularité") {
         newArrayFiltered = photographerData.sort((a, b) => b.likes - a.likes);
@@ -144,9 +145,8 @@ async function init() {
   options.forEach((option) => {
     option.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
+        select.focus();
         selected.textContent = option.textContent;
-        caret.classList.remove("caret-rotate");
-        menu.classList.remove("menu-open");
         options.forEach((option) => {
           option.removeAttribute("class");
         });

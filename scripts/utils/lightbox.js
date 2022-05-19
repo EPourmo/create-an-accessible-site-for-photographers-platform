@@ -85,6 +85,7 @@ async function lightboxDisplay(data) {
     newMedia.setAttribute("src", media.src);
     newMedia.setAttribute("class", "img-lb lb-focus");
     newMedia.setAttribute("aria-labelledby", "lb-title");
+
     currentIndex = index;
     title = mediaOnlyImg[currentIndex].title;
     lightboxTitle.textContent = title;
@@ -109,6 +110,8 @@ async function lightboxDisplay(data) {
 
     trieElement.setAttribute("tabindex", -1);
     selectElement.setAttribute("tabindex", -1);
+
+    newMedia.focus();
   }
 
   function removeLightbox() {
@@ -178,7 +181,9 @@ async function lightboxDisplay(data) {
 
   function previousPhoto() {
     if (currentIndex == 0) {
+      console.log(newMedia);
       newMedia.setAttribute("src", mediaArray[mediaArray.length - 1].src);
+      console.log(newMedia);
       currentIndex = mediaArray.length - 1;
       title = data[currentIndex].title;
       lightboxTitle.textContent = title;
