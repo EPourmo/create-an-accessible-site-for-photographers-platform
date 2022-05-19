@@ -108,8 +108,8 @@ function photographerFactory(data) {
 function mediaFactory(data) {
   const { id, photographerId, title, image, likes, date, price, video } = data;
 
-  const photoMedia = `/assets/images/${image}`;
-  const videoMedia = `assets/videos/${video}`;
+  const photoMedia = `./assets/images/${image}`;
+  const videoMedia = `./assets/videos/${video}`;
 
   function getPortfolioCard() {
     const card = document.createElement("div");
