@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function photographerFactory(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
 
@@ -105,8 +106,9 @@ function photographerFactory(data) {
   return { name, picture, getUserCardDOM, id, getUserHeaderDOM };
 }
 
+// eslint-disable-next-line no-unused-vars
 function mediaFactory(data) {
-  const { id, photographerId, title, image, likes, date, price, video } = data;
+  const { title, image, likes, video } = data;
 
   const photoMedia = `./assets/images/${image}`;
   const videoMedia = `./assets/videos/${video}`;

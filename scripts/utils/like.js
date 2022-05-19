@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 async function displayLike(media, hearts, likeNumbers) {
   let imgHeartArray = [];
   let likeNumberArray = [];

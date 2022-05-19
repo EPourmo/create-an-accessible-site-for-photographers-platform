@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // --------- START create elements--------
 // create a ligthbox div
 const lightbox = document.createElement("div");

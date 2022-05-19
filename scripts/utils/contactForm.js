@@ -14,6 +14,7 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
+// eslint-disable-next-line no-unused-vars
 async function displayModal() {
   const modal = document.getElementById("contact_modal");
   const main = document.getElementById("main");
