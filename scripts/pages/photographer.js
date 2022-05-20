@@ -137,15 +137,11 @@ async function init() {
       select.setAttribute("aria-expanded", false);
       select.focus();
 
-      console.log(selected.innerText);
-
       if (selected.innerText === "Popularité") {
-        newArrayFiltereinnerTextd = photographerData.sort(
-          (a, b) => b.likes - a.likes
-        );
+        // newArrayFiltered = photographerData.sort((a, b) => b.likes - a.likes);
         removePreviousSection();
-        displayMedia(newArrayFiltered);
-        lightboxDisplay(newArrayFiltered);
+        displayMedia(popularArraySorted);
+        lightboxDisplay(popularArraySorted);
       } else if (selected.innerText === "Date") {
         newArrayFiltered = photographerData.sort(
           (a, b) => new Date(b.date) - new Date(a.date)

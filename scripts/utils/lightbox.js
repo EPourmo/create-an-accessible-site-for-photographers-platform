@@ -39,8 +39,8 @@ lightboxContainer.appendChild(closeBtnLb);
 
 // ----------- START Main function----------
 async function lightboxDisplay(data) {
-  let currentIndex;
-  let title;
+  let currentIndex = 0;
+  let title = "";
   let mediaArray = [];
   const mediaElement = document.querySelectorAll(".photo-element");
   const mediaOnlyImg = data.filter((media) => media.image);
@@ -49,6 +49,7 @@ async function lightboxDisplay(data) {
   for (let i = 0; i < mediaElement.length; i++) {
     mediaArray.push(mediaElement[i]);
   }
+
   // create a click event listener on img element
   mediaArray.forEach((media, index) => {
     media.addEventListener("click", () => showLightbox(media, index));
@@ -148,14 +149,14 @@ async function lightboxDisplay(data) {
   });
   document.addEventListener("keydown", function (event) {
     if (event.key === "ArrowLeft") {
-      nextPhoto();
+      previousPhoto();
     }
   });
 
   // use focus and Enter on arrows for caroussel
   rightArrow.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-      previousPhoto();
+      nextPhoto();
     }
   });
 
@@ -172,9 +173,9 @@ async function lightboxDisplay(data) {
       title = mediaOnlyImg[currentIndex].title;
       lightboxTitle.textContent = title;
     } else {
-      newMedia.setAttribute("src", mediaArray[currentIndex + 1].src);
       currentIndex++;
-      title = data[currentIndex].title;
+      newMedia.setAttribute("src", mediaArray[currentIndex].src);
+      title = mediaOnlyImg[currentIndex].title;
       lightboxTitle.textContent = title;
     }
   }
@@ -183,12 +184,12 @@ async function lightboxDisplay(data) {
     if (currentIndex == 0) {
       newMedia.setAttribute("src", mediaArray[mediaArray.length - 1].src);
       currentIndex = mediaArray.length - 1;
-      title = data[currentIndex].title;
+      title = mediaOnlyImg[currentIndex].title;
       lightboxTitle.textContent = title;
     } else {
       newMedia.setAttribute("src", mediaArray[currentIndex - 1].src);
       currentIndex--;
-      title = data[currentIndex].title;
+      title = mediaOnlyImg[currentIndex].title;
       lightboxTitle.textContent = title;
     }
   }
