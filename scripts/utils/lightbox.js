@@ -4,6 +4,8 @@
 const lightbox = document.createElement("div");
 lightbox.setAttribute("id", "lightbox");
 lightbox.setAttribute("aria-hidden", true);
+lightbox.setAttribute("aria-label", "image vue en gros plan");
+lightbox.setAttribute("role", "dialog");
 document.body.appendChild(lightbox);
 // create a ligthbox container
 const lightboxContainer = document.createElement("div");
@@ -39,7 +41,6 @@ lightboxContainer.appendChild(closeBtnLb);
 
 // ----------- START Main function----------
 async function lightboxDisplay(data) {
-  let currentIndex = 0;
   let title = "";
   let mediaArray = [];
   const mediaElement = document.querySelectorAll(".photo-element");
@@ -63,25 +64,9 @@ async function lightboxDisplay(data) {
     });
   });
 
-  // close lightbox with click event
-  closeBtnLb.addEventListener("click", () => {
-    removeLightbox();
-  });
-  // close lightbox with enter event
-  closeBtnLb.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      removeLightbox();
-    }
-  });
-  // close lightbox with escape event
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      removeLightbox();
-    }
-  });
-
   // function to show lightbox img (img added and title)
   function showLightbox(media, index) {
+    let currentIndex = 0;
     lightbox.classList.add("active");
     newMedia.setAttribute("src", media.src);
     newMedia.setAttribute("class", "img-lb lb-focus");
@@ -113,84 +98,108 @@ async function lightboxDisplay(data) {
     selectElement.setAttribute("tabindex", -1);
 
     newMedia.focus();
-  }
 
-  function removeLightbox() {
-    lightbox.classList.remove("active");
-    // change focus
-    const main = document.getElementById("main");
-    const trieElement = document.querySelector(".order-by");
-    const selectElement = document.querySelector(".select");
-    main.setAttribute("aria-hidden", false);
-    lightbox.setAttribute("aria-hidden", true);
+    // caroussel functions
+    function nextPhoto() {
+      if (currentIndex == mediaArray.length - 1) {
+        newMedia.setAttribute("src", mediaArray[0].src);
+        title = mediaOnlyImg[0].title;
+        lightboxTitle.textContent = title;
+        currentIndex = 0;
+      } else {
+        newMedia.setAttribute("src", mediaArray[currentIndex + 1].src);
+        title = mediaOnlyImg[currentIndex + 1].title;
+        lightboxTitle.textContent = title;
+        currentIndex++;
+      }
+    }
 
-    const mainFocus = document.querySelectorAll(".main-focus");
-    const lbFocus = document.querySelectorAll(".lb-focus");
-    lbFocus.forEach((element) => {
-      element.setAttribute("tabindex", -1);
+    function previousPhoto() {
+      if (currentIndex == 0) {
+        newMedia.setAttribute("src", mediaArray[mediaArray.length - 1].src);
+        currentIndex = mediaArray.length - 1;
+        title = mediaOnlyImg[currentIndex].title;
+        lightboxTitle.textContent = title;
+      } else {
+        newMedia.setAttribute("src", mediaArray[currentIndex - 1].src);
+        title = mediaOnlyImg[currentIndex - 1].title;
+        lightboxTitle.textContent = title;
+        currentIndex--;
+      }
+    }
+
+    function removeLightbox() {
+      // delete currentIndex.value;
+      lightbox.classList.remove("active");
+
+      // change focus
+      const main = document.getElementById("main");
+      const trieElement = document.querySelector(".order-by");
+      const selectElement = document.querySelector(".select");
+      main.setAttribute("aria-hidden", false);
+      lightbox.setAttribute("aria-hidden", true);
+
+      const mainFocus = document.querySelectorAll(".main-focus");
+      const lbFocus = document.querySelectorAll(".lb-focus");
+      lbFocus.forEach((element) => {
+        element.setAttribute("tabindex", -1);
+      });
+
+      mainFocus.forEach((element) => {
+        element.setAttribute("tabindex", 0);
+      });
+
+      trieElement.setAttribute("tabindex", 0);
+      selectElement.setAttribute("tabindex", 0);
+    }
+
+    // use arrow for caroussel : click event
+    rightArrow.addEventListener("click", nextPhoto);
+    leftArrow.addEventListener("click", previousPhoto);
+    // use arrow for caroussel : arrows keyboard event
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowRight") {
+        nextPhoto();
+        newMedia.focus();
+      }
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowLeft") {
+        previousPhoto();
+        newMedia.focus();
+      }
     });
 
-    mainFocus.forEach((element) => {
-      element.setAttribute("tabindex", 0);
+    // use focus and Enter on arrows for caroussel
+    rightArrow.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        nextPhoto();
+        newMedia.focus();
+      }
     });
 
-    trieElement.setAttribute("tabindex", 0);
-    selectElement.setAttribute("tabindex", 0);
-  }
+    leftArrow.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        previousPhoto();
+        newMedia.focus();
+      }
+    });
 
-  // use arrow for caroussel : click event
-  rightArrow.addEventListener("click", nextPhoto);
-  leftArrow.addEventListener("click", previousPhoto);
-  // use arrow for caroussel : arrows keyboard event
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "ArrowRight") {
-      nextPhoto();
-    }
-  });
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "ArrowLeft") {
-      previousPhoto();
-    }
-  });
-
-  // use focus and Enter on arrows for caroussel
-  rightArrow.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      nextPhoto();
-    }
-  });
-
-  leftArrow.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      previousPhoto();
-    }
-  });
-  // caroussel functions
-  function nextPhoto() {
-    if (currentIndex == mediaArray.length - 1) {
-      newMedia.setAttribute("src", mediaArray[0].src);
-      currentIndex = 0;
-      title = mediaOnlyImg[currentIndex].title;
-      lightboxTitle.textContent = title;
-    } else {
-      currentIndex++;
-      newMedia.setAttribute("src", mediaArray[currentIndex].src);
-      title = mediaOnlyImg[currentIndex].title;
-      lightboxTitle.textContent = title;
-    }
-  }
-
-  function previousPhoto() {
-    if (currentIndex == 0) {
-      newMedia.setAttribute("src", mediaArray[mediaArray.length - 1].src);
-      currentIndex = mediaArray.length - 1;
-      title = mediaOnlyImg[currentIndex].title;
-      lightboxTitle.textContent = title;
-    } else {
-      newMedia.setAttribute("src", mediaArray[currentIndex - 1].src);
-      currentIndex--;
-      title = mediaOnlyImg[currentIndex].title;
-      lightboxTitle.textContent = title;
-    }
+    // close lightbox with click event
+    closeBtnLb.addEventListener("click", () => {
+      removeLightbox();
+    });
+    // close lightbox with enter event
+    closeBtnLb.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        removeLightbox();
+      }
+    });
+    // close lightbox with escape event
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        removeLightbox();
+      }
+    });
   }
 }

@@ -138,7 +138,7 @@ async function init() {
       select.focus();
 
       if (selected.innerText === "Popularité") {
-        // newArrayFiltered = photographerData.sort((a, b) => b.likes - a.likes);
+        newArrayFiltered = photographerData.sort((a, b) => b.likes - a.likes);
         removePreviousSection();
         displayMedia(popularArraySorted);
         lightboxDisplay(popularArraySorted);
@@ -153,11 +153,6 @@ async function init() {
         newArrayFiltered = photographerData.sort((a, b) =>
           a.title.localeCompare(b.title)
         );
-        removePreviousSection();
-        displayMedia(newArrayFiltered);
-        lightboxDisplay(newArrayFiltered);
-      } else {
-        newArrayFiltered = photographerData;
         removePreviousSection();
         displayMedia(newArrayFiltered);
         lightboxDisplay(newArrayFiltered);
