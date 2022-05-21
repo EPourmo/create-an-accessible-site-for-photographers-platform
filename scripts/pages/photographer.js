@@ -10,12 +10,10 @@ async function getPhotographersFullData() {
   for (let i = 0; i < data.photographers.length; i++) {
     photographers.push(data.photographers[i]);
   }
-
   // store photographer media data in a new array
   for (let i = 0; i < data.media.length; i++) {
     photoMedia.push(data.media[i]);
   }
-
   return { photographers, photoMedia };
 }
 
