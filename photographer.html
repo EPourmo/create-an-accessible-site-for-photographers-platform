@@ -1,36 +1,169 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"
+      integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5"
+      crossorigin="anonymous"
+    />
+
+    <script defer src="./scripts/pages/photographer.js"></script>
+    <script defer src="./scripts/factories/photographer.js"></script>
+    <script defer src="./scripts/utils/contactForm.js"></script>
+    <script defer src="./scripts/utils/lightbox.js"></script>
+    <script defer src="./scripts/utils/like.js"></script>
+    <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
+    <header id="main-header">
+      <a href="/index.html" tabindex="0" class="main-focus">
+        <img
+          src="assets/images/logo.png"
+          class="logo"
+          alt="Fisheye Home page"
+        />
+      </a>
     </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+    <main id="main" aria-hidden="false">
+      <div class="photograph-header"></div>
+      <div class="dropdown-container">
+        <label tabindex="0" class="order-by" id="order-by">Trier par</label>
+        <div class="dropdown">
+          <button
+            class="select"
+            tabindex="0"
+            role="button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+          >
+            <span class="selected" aria-label="trie par popularité"
+              >Popularité</span
+            >
+            <div class="caret"><i class="fa-solid fa-angle-down"></i></div>
+          </button>
+          <ul
+            class="menu"
+            role="listbox"
+            id="menu"
+            aria-labelledby="order-by"
+            aria-activedescendant="date"
+          >
+            <li
+              tabindex="0"
+              role="option"
+              id="popularity"
+              class="active"
+              aria-labelledby="order-by popularity"
+            >
+              Popularité
+            </li>
+            <li
+              tabindex="0"
+              role="option"
+              id="date"
+              aria-labelledby="order-by date"
+            >
+              Date
+            </li>
+            <li
+              tabindex="0"
+              role="option"
+              id="title"
+              aria-labelledby="order-by title"
+            >
+              Titre
+            </li>
+          </ul>
+        </div>
       </div>
     </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+    <div
+      id="contact_modal"
+      role="dialog"
+      aria-hidden="true"
+      aria-describedby="contact-moi-header"
+    >
+      <div class="modal">
+        <header id="header">
+          <h2 id="contact-moi-header" class="modal-focus">
+            Contactez-moi <span id="photographer-name"></span>
+          </h2>
+          <img
+            src="assets/icons/close.svg"
+            id="close-btn"
+            aria-label="fermer le formulaire"
+            class="modal-focus"
+            alt=""
+          />
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script src="/scripts/utils/contactForm.js"></script>
+        <form name="contact" action="#" method="get" id="form">
+          <div class="form-data">
+            <label for="first" id="prenom" class="modal-focus">Prénom</label>
+            <input
+              class="text-control input-data modal-focus"
+              type="text"
+              id="first"
+              name="first"
+              required
+              aria-labelledby="prenom"
+            />
+          </div>
+
+          <div class="form-data">
+            <label for="last" id="nom" class="modal-focus">Nom</label>
+            <input
+              class="text-control input-data modal-focus"
+              type="text"
+              id="last"
+              name="last"
+              required
+              aria-labelledby="nom"
+            />
+          </div>
+
+          <div class="form-data">
+            <label for="email" id="e-mail" class="modal-focus">Email</label>
+            <input
+              class="text-control input-data modal-focus"
+              type="email"
+              id="email"
+              name="email"
+              required
+              aria-labelledby="e-mail"
+            />
+          </div>
+
+          <div class="form-data">
+            <label for="message" id="msg" class="modal-focus"
+              >Votre message</label
+            >
+            <textarea
+              class="text-area input-data modal-focus"
+              type="email"
+              id="message"
+              name="message"
+              required
+              aria-labelledby="msg"
+            ></textarea>
+          </div>
+
+          <button
+            class="contact_button submit-btn modal-focus"
+            aria-label="Envoyer"
+            type="submit"
+          >
+            Envoyer
+          </button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
