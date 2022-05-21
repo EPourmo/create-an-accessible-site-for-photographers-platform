@@ -1,9 +1,11 @@
 // eslint-disable-next-line no-unused-vars
+
+// Factory Method
 function photographerFactory(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
 
   const picture = `assets/photographers/${portrait}`;
-
+  // create user card for main page
   function getUserCardDOM() {
     const article = document.createElement("article");
     const paragraphContainer = document.createElement("div");
@@ -47,6 +49,7 @@ function photographerFactory(data) {
     return article;
   }
 
+  // create photographer header for photographer page
   function getUserHeaderDOM() {
     const information = document.createElement("div");
     const bottomInfo = document.createElement("div");
@@ -107,12 +110,14 @@ function photographerFactory(data) {
 }
 
 // eslint-disable-next-line no-unused-vars
+// Factory Method
 function mediaFactory(data) {
   const { title, image, likes, video } = data;
 
   const photoMedia = `./assets/images/${image}`;
   const videoMedia = `./assets/videos/${video}`;
 
+  // create media card
   function getPortfolioCard() {
     const card = document.createElement("div");
     const cardInfo = document.createElement("div");

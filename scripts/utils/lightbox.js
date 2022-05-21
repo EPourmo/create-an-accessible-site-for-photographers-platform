@@ -71,17 +71,17 @@ async function lightboxDisplay(data) {
     newMedia.setAttribute("src", media.src);
     newMedia.setAttribute("class", "img-lb lb-focus");
     newMedia.setAttribute("aria-labelledby", "lb-title");
-
+    // create and get index of the current media
     currentIndex = index;
     title = mediaOnlyImg[currentIndex].title;
     lightboxTitle.textContent = title;
     lightboxTitle.setAttribute("class", "lb-focus");
     lightboxTitle.setAttribute("id", "lb-title");
+
     // change focus
     const main = document.getElementById("main");
     main.setAttribute("aria-hidden", true);
     lightbox.setAttribute("aria-hidden", false);
-
     const mainFocus = document.querySelectorAll(".main-focus");
     const lbFocus = document.querySelectorAll(".lb-focus");
     const trieElement = document.querySelector(".order-by");
@@ -128,8 +128,8 @@ async function lightboxDisplay(data) {
       }
     }
 
+    // remove lightbox
     function removeLightbox() {
-      // delete currentIndex.value;
       lightbox.classList.remove("active");
 
       // change focus
@@ -138,7 +138,6 @@ async function lightboxDisplay(data) {
       const selectElement = document.querySelector(".select");
       main.setAttribute("aria-hidden", false);
       lightbox.setAttribute("aria-hidden", true);
-
       const mainFocus = document.querySelectorAll(".main-focus");
       const lbFocus = document.querySelectorAll(".lb-focus");
       lbFocus.forEach((element) => {

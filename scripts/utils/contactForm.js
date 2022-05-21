@@ -20,6 +20,7 @@ document.getElementById("close-btn").addEventListener("click", () => {
 });
 
 // eslint-disable-next-line no-unused-vars
+// display modal function
 async function displayModal() {
   const modal = document.getElementById("contact_modal");
   const main = document.getElementById("main");
@@ -49,6 +50,7 @@ async function displayModal() {
   modalHeaderName.focus();
 }
 
+//  close modal function
 async function closeModal() {
   const modal = document.getElementById("contact_modal");
   const main = document.getElementById("main");
@@ -84,6 +86,7 @@ form.addEventListener("submit", (e) => {
   const email = document.getElementById("email");
   const message = document.getElementById("message");
 
+  // show data if all fields are filled
   if (first.value && last.value && email.value && message.value) {
     console.log(
       `Prénom: ${first.value}, Nom: ${first.value}, Email: ${email.value}, Message: ${message.value}`
@@ -91,6 +94,7 @@ form.addEventListener("submit", (e) => {
   }
 
   closeModal();
+  // remove data from modal after closing modal
   const inputData = document.querySelectorAll(".input-data");
   inputData.forEach((input) => (input.value = ""));
 });

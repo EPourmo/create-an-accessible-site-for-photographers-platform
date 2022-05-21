@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 async function getPhotographers() {
-  // Récupération des données des photographes
+  // fetch photographers data from json file
   const response = await fetch("./data/photographers.json");
   const data = await response.json();
   const photographers = [];
-
+  // store data in a new array
   for (let i = 0; i < data.photographers.length; i++) {
     photographers.push(data.photographers[i]);
   }
@@ -14,7 +14,7 @@ async function getPhotographers() {
 
 async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
-
+  // create photographer card on main page
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
@@ -26,7 +26,7 @@ async function displayData(photographers) {
 }
 
 async function init() {
-  // Récupère les datas des photographes
+  // get photographers data
   const { photographers } = await getPhotographers();
   displayData(photographers);
 }

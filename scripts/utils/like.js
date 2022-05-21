@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+
+// function to manage like
 async function displayLike(media, hearts, likeNumbers) {
   let imgHeartArray = [];
   let likeNumberArray = [];
@@ -13,15 +15,19 @@ async function displayLike(media, hearts, likeNumbers) {
   bottomlikeDiv.appendChild(bottomLikeIcon);
   document.querySelector(".bottom-info").appendChild(bottomlikeDiv);
 
+  // get all heats element in an array
   for (let i = 0; i < hearts.length; i++) {
     imgHeartArray.push(hearts[i]);
   }
+
+  // get all likes number in an array
   for (let i = 0; i < likeNumbers.length; i++) {
     likeNumberArray.push(likeNumbers[i]);
   }
 
   getTotalLikes();
 
+  // Even listener on hearts
   imgHeartArray.forEach((heart, index) => {
     heart.addEventListener("click", () => {
       addLike(index);
@@ -37,6 +43,9 @@ async function displayLike(media, hearts, likeNumbers) {
     });
   });
 
+  // function to increment heart
+  // if heart number = media.likes => increment
+  //  else if number = media.likes + 1 => decrement
   function addLike(index) {
     if (likeNumberArray[index].innerHTML == media[index].likes) {
       likeNumberArray[index].innerHTML = media[index].likes + 1;
@@ -49,13 +58,14 @@ async function displayLike(media, hearts, likeNumbers) {
     }
   }
 
-  // affichage global des likes
+  // display total likes with changes
   function getTotalLikes() {
     let likeTotalArray = [];
     likeNumberArray.forEach((like) => {
       likeTotalArray.push(like.innerHTML);
     });
 
+    // calculate total likes (first convert in number than reduce in 1 number)
     const totalLikes = likeTotalArray
       .map((item) => parseInt(item, 10))
       .reduce((previousValue, currentValue) => previousValue + currentValue);
